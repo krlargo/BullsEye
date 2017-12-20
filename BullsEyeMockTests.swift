@@ -38,16 +38,15 @@ class BullsEyeMockTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testGameStyleCanChange() {
+        /// Implement fake segmentedControl
+        let segmentedControl = UISegmentedControl();
+        
+        /// Should be initialized at 0
+        XCTAssertEqual(mockDefaults.gameStyleChanged, 0, "gameStyleChanged should be 0 before sendActions");
+        segmentedControl.addTarget(controllerUnderTest, action: #selector(ViewController.chooseGameStyle(_:)), for: .valueChanged);
+        segmentedControl.sendActions(for: .valueChanged); /// Change value
+        
+        XCTAssertEqual(mockDefaults.gameStyleChanged, 1, "gameStyle user default wasn't changed");
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
 }
