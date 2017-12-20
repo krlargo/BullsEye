@@ -40,4 +40,15 @@ class BullsEyeMockTests: XCTestCase {
         
         super.tearDown();
     }
+    
+    func testGameStyleCanBeChanged() {
+        // Use fake segmentedControl
+        let segmentedControl = UISegmentedControl();
+        
+        XCTAssertEqual(mockUserDefaults.gameStyleChanged, 0, "gameStyleChanged should be 0 before sendActions");
+        segmentedControl.addTarget(controllerUnderTest, action: #selector(ViewController.chooseGameStyle(_:)), for: .valueChanged);
+        segmentedControl.sendActions(for: .valueChanged);
+        
+        XCTAssertEqual(mockUserDefaults.gameStyleChanged, 1, "gameStyle user default wasn't changed");
+    }
 }
