@@ -20,13 +20,21 @@ class MockUserDefaults: UserDefaults {
 
 class BullsEyeMockTests: XCTestCase {
     
+    var controllerUnderTest: ViewController!
+    var mockDefaults: MockUserDefaults!
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        controllerUnderTest = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! ViewController!;
+        mockDefaults = MockUserDefaults(suiteName: "testing");
+        controllerUnderTest.defaults = mockDefaults;
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        
+        controllerUnderTest = nil;
+        mockDefaults = nil;
         super.tearDown()
     }
     
